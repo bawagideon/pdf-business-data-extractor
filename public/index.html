@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PDF Invoice Data Extractor — Simulator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root { --bg: #090d16; --card: #131b2e; --accent: #ec4899; --text: #f1f5f9; --text-dim: #94a3b8; --border: #1e293b; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: monospace, sans-serif; }
+    body { background: var(--bg); color: var(--text); padding: 24px; min-height: 100vh; }
+    .header { border-bottom: 1px solid var(--border); padding-bottom: 16px; margin-bottom: 24px; }
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .panel { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 20px; }
+    textarea { width: 100%; height: 200px; background: #090d16; border: 1px solid var(--border); color: #fff; padding: 12px; border-radius: 6px; font-size: 12px; font-family: monospace; resize: none; margin-bottom: 12px; }
+    button { background: var(--accent); color: #fff; border: none; padding: 10px 18px; border-radius: 6px; font-weight: 700; cursor: pointer; }
+    table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 12px; }
+    th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--border); }
+    th { color: var(--text-dim); }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h2 style="color: #fff;">📑 PDF Invoice & Line-Item Table Extractor</h2>
+    <div style="font-size: 12px; color: var(--text-dim)">Accounts Payable Reconciliation Engine</div>
+  </div>
+
+  <div class="split">
+    <div class="panel">
+      <div style="font-weight: 700; margin-bottom: 8px;">Raw Invoice Text (Extracted from PDF)</div>
+      <textarea id="rawInv">Vendor: CloudScale Architecture Ltd
+Invoice: INV-88291-B
+Due Date: 2026-11-20
+PostgreSQL Cloud Cluster    2   1200.00   2400.00
+Redis Cache Instance        1    450.00    450.00
+Load Balancer Multi-Region  1    600.00    600.00
+Total: $3450.00</textarea>
+      <button onclick="extract()">🔍 Parse Table & Verify Math</button>
+    </div>
+
+    <div class="panel">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span style="font-weight: 700;">Reconstructed Accounting Ledger</span>
+        <span style="background: rgba(16, 185, 129, 0.2); color: #34d399; padding: 3px 8px; border-radius: 4px; font-size: 11px;" id="reconBadge">✓ $3,450.00 RECONCILED</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Qty</th>
+            <th>Unit Price</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody id="lineBody">
+          <tr><td>PostgreSQL Cloud Cluster</td><td>2</td><td>$1,200.00</td><td>$2,400.00</td></tr>
+          <tr><td>Redis Cache Instance</td><td>1</td><td>$450.00</td><td>$450.00</td></tr>
+          <tr><td>Load Balancer Multi-Region</td><td>1</td><td>$600.00</td><td>$600.00</td></tr>
+        </tbody>
+      </table>
+      <button style="margin-top: 16px; background: #10b981;" onclick="alert('Exported pristine CSV to QuickBooks integration queue')">📥 Export CSV to QuickBooks</button>
+    </div>
+  </div>
+
+  <script>
+    function extract() {
+      alert('✓ Table extracted successfully! Zero manual data entry required.');
+    }
+  </script>
+</body>
+</html>

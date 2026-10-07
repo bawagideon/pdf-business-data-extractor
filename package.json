@@ -1,0 +1,11 @@
+{
+  "name": "pdf-business-data-extractor",
+  "version": "1.0.0",
+  "description": "Autonomous financial document parsing engine that ingests unstructured PDF invoices, reconstructs line-item matrices, audits arithmetic totals, and exports clean accounting JSON/CSV.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  },
+  "author": "Gideon Bawa <bawagideon98@gmail.com>",
+  "license": "MIT"
+}
